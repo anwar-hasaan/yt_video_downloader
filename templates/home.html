@@ -1,0 +1,92 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://www.iconpacks.net/icons/1/free-video-icon-818-thumb.png">
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title>YouTube Video Downloader</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="brand"><a href="/">YT Downloader</a></div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Login</a></li>                
+            </ul>
+        </nav>
+    </header>
+    {% if messages %}
+      <div class="messages" style="text-align: center; margin-top: 20px;">
+          {% for message in messages %}
+            <p style="font-size: 18px;">
+                {% if message.tags == "error" %}
+                  <i class="fa fa-exclamation" aria-hidden="true"></i>
+                  {% else %}
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                {% endif %}
+                &nbsp;{{message}}
+            </p>
+          {% endfor %}
+      </div>
+    {% endif %}
+
+    <div style="text-align: center; display: flex; justify-content: center; margin-top: 20px;">
+      <form action="." role="form" method="post" id="search-form">
+          {% csrf_token %}
+          <h2 style="margin-top: 25px; margin-bottom: 10px;">Download YouTube Video</h2>
+          <p>Enter the  video url below</p>
+          <input type="url" name="url" placeholder="Enter url here" required>
+          <input type="submit" class="submit-btn" value="Search" name="Search-url" id="search-btn">
+      </form>
+    </div>
+    
+    {% if video_obj %}
+    <div class="container">
+        <img src="{{thumbnail}}" alt="">
+    </div>
+    <div class="container">
+        <table id="table-panel">
+            <tr>
+              <th>Quality</th>
+              <th>Size</th>
+              <th>Type</th>
+              <th>Action</th>
+            </tr>
+
+            {% for video in video_obj %}
+            <tr>
+              <td>{{video.resolution}}</td>
+              <td>{{video.filesize|div:1000000|floatformat}}MB</td>
+              <td>{{video.type}}</td>
+              <td>
+                <form action="." method="post" aria-hidden="true">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{url}}" name="url">
+                    <input type="hidden" name="itag" value="{{video.itag}}">
+                    <input type="submit" value="Download" name="download" id="download-btn">
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+    </div>
+    {% endif %}    
+    <!-- <footer style="margin-top: 100px;">
+        <p>Developed by <a target="_blank" href="https://www.facebook.com/people/Anwar-Hasan/100013294023949/">Anwar Hasan</a></p>
+    </footer> -->
+    <script>
+      document.getElementById("search-btn").addEventListener('click',function (){
+        document.getElementById("search-btn").value = 'Getting...';
+        
+      });
+    </script>
+    <script src="{% static 'index.js' %}" defer></script>
+</body>
+</html>

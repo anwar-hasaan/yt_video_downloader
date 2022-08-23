@@ -1,0 +1,140 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --background-color: #523939;
+    --link-background-collor: #dbb9c2;
+    --text-color: #e8d8d8;
+    --hover-color: #362727;
+    --gray-color: rgba(56, 119, 109, 0.87);
+}
+html{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: var(--link-background-collor);
+}
+a:hover{
+    color: var(--hover-color);
+}
+input{
+    width: 95%;
+    margin: 10px auto;
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #d6b6b6;
+}
+
+input:focus{
+    border: solid 1px gray;
+}
+.submit-btn{
+    width: 30%;
+    font-weight: bold;
+    color: rgb(90, 56, 56);
+    cursor: pointer;
+    padding: 8px;
+    border: none;
+}
+.submit-btn:hover{
+    background-color: #362727;
+    color: aquamarine;
+}
+header nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+header nav  ul{
+    list-style-type: none;
+    display: inline-flex;
+}
+header nav ul li{
+    margin: 5px 8px;
+}
+header{
+    box-shadow: 0 10px 15px -3px var(--gray-color);
+}
+@media screen and (max-width: 600px){
+    header nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .brand{
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+}
+footer{
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    margin-top: 100px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 10px 15px 15px var(--gray-color);
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
+}
+.container img{
+    width: 300px;
+    height: 180px;
+}
+
+#table-panel {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+}
+  
+#table-panel td, #table-panel th{
+    border-bottom: 1px solid rgb(148, 124, 124);
+    padding: 8px;
+    text-align: center;
+}
+
+#table-panel tr:nth-child(even){
+    background-color: #423939;
+}
+
+/* #table-panel tr:hover {
+    background-color: rgb(40, 95, 99);
+} */
+
+#table-panel th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #04AA6D;
+    color: rgb(31, 10, 10);
+}
+
+#download-btn{
+    width: 80px;
+    height: 30px;
+    background-color: #302121;
+    color: var(--link-background-collor);
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 0;
+    cursor: pointer;
+}
+#download-btn:hover{
+    background-color: var(--link-background-collor);
+    color: #302121;
+}
