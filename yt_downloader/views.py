@@ -40,15 +40,6 @@ def home(request):
         
     return render(request, 'home.html')
 
-def downloading(request):
-    return render(request, 'downloading.html')
-
-
-
-
-
-
-
 
 
 
