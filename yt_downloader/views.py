@@ -1,7 +1,7 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from pytube import YouTube
 from django.contrib import messages
+import os
 
 # Create your views here.
 def home(request):
@@ -30,8 +30,9 @@ def home(request):
             itag = request.POST.get('itag')
             if len(url) != 0 and len(itag) != 0:
                 try:
+                    dirs = os.path.expanduser("~/Downloads")
                     yt = YouTube(url)
-                    yt.streams.get_by_itag(itag).download()
+                    yt.streams.get_by_itag(itag).download(dirs)
                     messages.success(request, 'Download successful')
                     return redirect('/')
                 except:
